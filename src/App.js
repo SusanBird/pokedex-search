@@ -1,20 +1,21 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import { getPokemons } from './services/fetch-utils';
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
+  const [query, setQuery] = useState('char');
 
+  async function load() {
+    const data = await getPokemons(query);
+
+    setPokemons(data);
+  }
+  
   useEffect(() => {
-    async function load() {
-      const rawResponse = await fetch('https://pokedex-alchemy.herokuapp.com/');
-      const data = await rawResponse.json(); 
-      
-      console.log(data);
-      setPokemons(data);
-    }
-
-    load();
-  }, []);
+    
+    load();    
+  }, []); //eslint-disable-line
 
   return (
     <div className="App">
