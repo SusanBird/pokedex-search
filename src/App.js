@@ -9,7 +9,8 @@ function App() {
   async function load() {
     const data = await getPokemons(query);
 
-    setPokemons(data);
+    console.log(data.results);
+    setPokemons(data.results);
   }
   
   useEffect(() => {
