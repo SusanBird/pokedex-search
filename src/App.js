@@ -17,8 +17,18 @@ function App() {
     load();    
   }, []); //eslint-disable-line
 
+  async function handleSearch(e) {
+    e.preventDefault();
+
+    load();
+  }
+
   return (
     <div className="App">
+      <form onSubmit={handleSearch}>
+        <input onChange={e => setQuery(e.target.value)}/>
+        <button>Search</button>
+      </form>
       <header className='App-header'>
         {pokemons.map(({ pokemon, attack, defense, url_image }, i) => <div key={pokemon.pokemon + i}>
           <p>name: {pokemon}</p>
