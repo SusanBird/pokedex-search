@@ -8,6 +8,7 @@ const headers = {
 };
 
 
+// eslint-disable-next-line no-unused-vars
 exports.handler = async (event, context) => {
   try {
     const response = await fetch(`https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${event.queryStringParameters.pokemon}`);
@@ -20,6 +21,7 @@ exports.handler = async (event, context) => {
       body: json
     };
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(error);
     return {
       statusCode: 500,
