@@ -1,15 +1,20 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { getPokemons } from './services/fetch-utils';
+import Spinner from './Spinner';
+import PokemonList from './PokemonList';
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
   const [query, setQuery] = useState('char');
+  const [isLoading, setIsLoading] = useState(false);
 
   async function load() {
+    setIsLoading(true);
     const data = await getPokemons(query);
+    setIsLoading(false);
 
-    console.log(data.results);
+    // console.log(data.results);
     setPokemons(data.results);
   }
   
@@ -31,13 +36,11 @@ function App() {
         <button>Search</button>
       </form>
       <header className='App-header'>
-        {pokemons.map(({ pokemon, attack, defense, url_image }, i) => <div key={pokemon.pokemon + i}>
-          <p>name: {pokemon}</p>
-          <p>attack: {attack}</p>
-          <p>defense: {defense}</p>
-          <img src={url_image} />
-        </div>
-        )}
+        {
+          isLoading
+            ? <Spinner />
+            : <PokemonList pokemons={pokemons} />
+        }
       </header>
 
     </div>
