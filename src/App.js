@@ -23,16 +23,16 @@ function App() {
     load();    
   }, []); //eslint-disable-line
 
-  async function handleSearch(e) {
+  function handleSearch(e) {
     e.preventDefault();
 
-    load();
+    load(query);
   }
 
   return (
     <div className="App">
       <form onSubmit={handleSearch}>
-        <input onChange={e => setQuery(e.target.value)}/>
+        <input value={query} onChange={(e) => setQuery(e.target.value)}></input>
         <button>Search</button>
       </form>
       <header className='App-header'>
@@ -48,6 +48,3 @@ function App() {
 }
 
 export default App;
-
-
-///need to add keys to Netlify too 
