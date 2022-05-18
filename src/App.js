@@ -14,8 +14,8 @@ function App() {
     const data = await getPokemons(query);
     setIsLoading(false);
 
-    // console.log(data.results);
-    setPokemons(data.results);
+    // console.log(data);
+    setPokemons(data.data.results);
   }
   
   useEffect(() => {
